@@ -52,7 +52,7 @@ export function CircuitBackground() {
       drawWires(ctx, width, height, time)
       drawComponents(ctx, width, height, time)
       drawNodes(ctx, width, height, time)
-      drawVoltageSources(ctx, width, height)
+      drawVoltageSources(ctx, width, height, time)
     }
 
     const drawWires = (
@@ -82,7 +82,7 @@ export function CircuitBackground() {
           ctx.moveTo(Math.random() * width * 0.3, y)
           ctx.lineTo(Math.random() * width * 0.7 + width * 0.3, y)
           ctx.stroke()
-          ctx.setLineDash([])
+          ctx.setLineDash([]) 
         }
       }
 
@@ -276,7 +276,8 @@ export function CircuitBackground() {
     const drawVoltageSources = (
       ctx: CanvasRenderingContext2D,
       width: number,
-      height: number
+      height: number,
+      time: number
     ) => {
       const numSources = 5
       ctx.strokeStyle = componentColor
@@ -305,10 +306,23 @@ export function CircuitBackground() {
     }
 
     drawElectricalCircuit()
-    return () => window.removeEventListener("resize", resizeCanvas)
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas)
+    }
   }, [])
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: -1,
+      }}
+    />
+  )
 }
 
 

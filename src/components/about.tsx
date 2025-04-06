@@ -121,9 +121,10 @@ export default function About() {
             About <span className="text-cyan-400">Me</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base">
-            I'm a passionate electrical engineer with expertise in various domains of electrical engineering, committed
-            to creating innovative and sustainable solutions.
-          </p>
+  I&apos;m a passionate electrical engineer with expertise in various domains of electrical engineering, committed
+  to creating innovative and sustainable solutions.
+</p>
+
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-16">
