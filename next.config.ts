@@ -1,7 +1,7 @@
-// next.config.js
-module.exports = {
-  devServer: {
-    port: process.env.PORT || 3000
-  }
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
 };
 
+export default nextConfig;
