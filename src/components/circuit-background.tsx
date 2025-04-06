@@ -36,10 +36,8 @@ export function CircuitBackground() {
       ctx.fillStyle = bgColor
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      const time = Date.now() / 1000
-
       // Draw circuit elements
-      drawCircuitElements(ctx, canvas.width, canvas.height, time)
+      drawCircuitElements(ctx, canvas.width, canvas.height)
 
       // Add a semi-transparent overlay to ensure content readability
       ctx.globalAlpha = 0.6
@@ -51,22 +49,22 @@ export function CircuitBackground() {
     }
 
     // Function to draw circuit elements
-    const drawCircuitElements = (ctx: CanvasRenderingContext2D, width: number, height: number, time: number) => {
+    const drawCircuitElements = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
       // Draw horizontal and vertical wires
-      drawWires(ctx, width, height, time)
+      drawWires(ctx, width, height)
 
       // Draw circuit components
-      drawComponents(ctx, width, height, time)
+      drawComponents(ctx, width, height)
 
       // Draw connection nodes
-      drawNodes(ctx, width, height, time)
+      drawNodes(ctx, width, height)
 
       // Draw voltage sources
-      drawVoltageSources(ctx, width, height, time)
+      drawVoltageSources(ctx, width, height)
     }
 
     // Draw wires
-    const drawWires = (ctx: CanvasRenderingContext2D, width: number, height: number, time: number) => {
+    const drawWires = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
       ctx.lineWidth = 2
 
       // Create a grid of wires
@@ -85,7 +83,7 @@ export function CircuitBackground() {
         // Add some active wires with flowing current effect
         if (Math.random() > 0.6) {
           // Create flowing current effect
-          const dashOffset = (time * 30) % 40
+          const dashOffset = (Date.now() / 1000 * 30) % 40
           ctx.globalAlpha = 0.6
           ctx.strokeStyle = activeWireColor
           ctx.setLineDash([5, 15])
@@ -96,7 +94,7 @@ export function CircuitBackground() {
           ctx.lineTo(Math.random() * width * 0.7 + width * 0.3, y)
           ctx.stroke()
 
-          ctx.setLineDash([])
+          ctx.setLineDash([]) 
         }
       }
 
@@ -113,7 +111,7 @@ export function CircuitBackground() {
         // Add some active wires with flowing current effect
         if (Math.random() > 0.6) {
           // Create flowing current effect
-          const dashOffset = (time * 30) % 40
+          const dashOffset = (Date.now() / 1000 * 30) % 40
           ctx.globalAlpha = 0.6
           ctx.strokeStyle = activeWireColor
           ctx.setLineDash([5, 15])
@@ -124,13 +122,13 @@ export function CircuitBackground() {
           ctx.lineTo(x, Math.random() * height * 0.7 + height * 0.3)
           ctx.stroke()
 
-          ctx.setLineDash([])
+          ctx.setLineDash([]) 
         }
       }
     }
 
     // Draw circuit components
-    const drawComponents = (ctx: CanvasRenderingContext2D, width: number, height: number, time: number) => {
+    const drawComponents = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
       const gridSize = 100
 
       // Place components at grid intersections
@@ -316,7 +314,7 @@ export function CircuitBackground() {
     }
 
     // Draw connection nodes
-    const drawNodes = (ctx: CanvasRenderingContext2D, width: number, height: number, time: number) => {
+    const drawNodes = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
       const gridSize = 100
 
       ctx.fillStyle = activeWireColor
@@ -325,7 +323,7 @@ export function CircuitBackground() {
       for (let x = gridSize; x < width; x += gridSize) {
         for (let y = gridSize; y < height; y += gridSize) {
           // Pulsing effect
-          const pulse = 0.4 + Math.sin(time * 2 + x * 0.1 + y * 0.1) * 0.2
+          const pulse = 0.4 + Math.sin((Date.now() / 1000) * 2 + x * 0.1 + y * 0.1) * 0.2
           ctx.globalAlpha = pulse
 
           // Draw node
@@ -337,7 +335,7 @@ export function CircuitBackground() {
     }
 
     // Draw voltage sources
-    const drawVoltageSources = (ctx: CanvasRenderingContext2D, width: number, height: number, time: number) => {
+    const drawVoltageSources = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
       const numSources = 5
 
       ctx.strokeStyle = componentColor
@@ -351,37 +349,20 @@ export function CircuitBackground() {
         ctx.save()
         ctx.translate(x, y)
 
-        // Randomly rotate
-        const rotation = Math.floor(Math.random() * 4) * (Math.PI / 2)
-        ctx.rotate(rotation)
-
-        ctx.globalAlpha = 0.6
-
-        // Circle
+        // Draw a voltage source (circle with + and - signs)
         ctx.beginPath()
         ctx.arc(0, 0, size, 0, Math.PI * 2)
         ctx.stroke()
 
-        // Plus and minus symbols
+        // Add plus and minus signs
         ctx.beginPath()
-        ctx.moveTo(-size / 3, 0)
-        ctx.lineTo(size / 3, 0)
+        ctx.moveTo(0, -size / 2)
+        ctx.lineTo(0, size / 2)
         ctx.stroke()
 
         ctx.beginPath()
-        ctx.moveTo(0, -size / 3)
-        ctx.lineTo(0, size / 3)
-        ctx.stroke()
-
-        // Connecting wires
-        ctx.beginPath()
-        ctx.moveTo(-size, 0)
-        ctx.lineTo(-size * 2, 0)
-        ctx.stroke()
-
-        ctx.beginPath()
-        ctx.moveTo(size, 0)
-        ctx.lineTo(size * 2, 0)
+        ctx.moveTo(-size / 2, 0)
+        ctx.lineTo(size / 2, 0)
         ctx.stroke()
 
         ctx.restore()
@@ -399,6 +380,7 @@ export function CircuitBackground() {
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
 }
+
 
 
 
