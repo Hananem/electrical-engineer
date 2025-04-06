@@ -135,19 +135,19 @@ export default function About() {
           >
             <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-cyan-400">My Background</h3>
             <p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">
-            With over 2 years of experience in the electrical engineering field, I've worked on a diverse range of
-            projects from power distribution systems to renewable energy integration and smart building technologies.
-            </p>
-            <p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">
-            My educational background includes a Bachelor's degree in Electrical Engineering with a specialization in
-              Energy, Maintenance & Repair, which has provided me with a strong foundation in both theoretical knowledge
-              and practical applications.
-            </p>
-            <p className="text-gray-300 text-sm md:text-base">
-            I'm driven by the challenge of creating electrical systems that are not only efficient and reliable but
-              also sustainable and future-proof. My approach combines technical expertise with innovative thinking to
-              deliver solutions that exceed expectations.
-            </p>
+  With over 2 years of experience in the electrical engineering field, I&#39;ve worked on a diverse range of
+  projects from power distribution systems to renewable energy integration and smart building technologies.
+</p>
+<p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">
+  My educational background includes a Bachelor&#39;s degree in Electrical Engineering with a specialization in
+  Energy, Maintenance &amp; Repair, which has provided me with a strong foundation in both theoretical knowledge
+  and practical applications.
+</p>
+<p className="text-gray-300 text-sm md:text-base">
+  I&#39;m driven by the challenge of creating electrical systems that are not only efficient and reliable but
+  also sustainable and future-proof. My approach combines technical expertise with innovative thinking to
+  deliver solutions that exceed expectations.
+</p>
           </motion.div>
 
           <motion.div
@@ -163,7 +163,9 @@ export default function About() {
           </motion.div>
         </div>
 
-        <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center text-cyan-400">My Skills & Expertise</h3>
+        <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center text-cyan-400">
+  My Skills &amp; Expertise
+</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {skills.map((skill, index) => (
