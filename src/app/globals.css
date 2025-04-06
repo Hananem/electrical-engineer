@@ -1,26 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Color Palette */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222, 84%, 4.9%);
+  --primary: hsl(222, 47.4%, 11.2%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96.1%);
+  --secondary-foreground: hsl(222, 47.4%, 11.2%);
+  --muted: hsl(210, 40%, 96.1%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --accent: hsl(210, 40%, 96.1%);
+  --accent-foreground: hsl(222, 47.4%, 11.2%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --ring: hsl(222, 84%, 4.9%);
+
+  /* Border Radius */
+  --radius: 0.5rem;
+
+  /* Custom Colors */
+  --blue-50: #f0f9ff;
+  --blue-100: #e0f2fe;
+  --blue-200: #bae6fd;
+  --blue-300: #7dd3fc;
+  --blue-400: #38bdf8;
+  --blue-500: #0ea5e9;
+  --blue-600: #0284c7;
+  --blue-700: #0369a1;
+  --blue-800: #075985;
+  --blue-900: #0c4a6e;
+  --blue-950: #082f49;
+
+  --cyan-50: #ecfeff;
+  --cyan-100: #cffafe;
+  --cyan-200: #a5f3fc;
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --cyan-700: #0e7490;
+  --cyan-800: #155e75;
+  --cyan-900: #164e63;
+  --cyan-950: #083344;
+
+  /* Custom Animations */
+  --animation-glow: glow 1.5s ease-in-out infinite;
+  --animation-circuit-pulse: circuit-pulse 3s infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark Mode Overrides */
+.dark {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --primary: hsl(210, 40%, 98%);
+  --primary-foreground: hsl(222, 47.4%, 11.2%);
+  --secondary: hsl(217.2, 32.6%, 17.5%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217.2, 32.6%, 17.5%);
+  --muted-foreground: hsl(215, 20.2%, 65.1%);
+  --accent: hsl(217.2, 32.6%, 17.5%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217.2, 32.6%, 17.5%);
+  --input: hsl(217.2, 32.6%, 17.5%);
+  --ring: hsl(212.7, 26.8%, 83.9%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Styles */
+* {
+  border-color: var(--border);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
+
+/* Color Utility Classes */
+.text-cyan-400 {
+  color: var(--cyan-400);
+}
+
+.text-cyan-300 {
+  color: var(--cyan-300);
+}
+
+.text-blue-200 {
+  color: var(--blue-200);
+}
+
+.text-blue-900 {
+  color: var(--blue-900);
+}
+
+.text-blue-800 {
+  color: var(--blue-800);
+}
+
+.bg-blue-900 {
+  background-color: var(--blue-900);
+}
+
+.bg-blue-800 {
+  background-color: var(--blue-800);
+}
+
+.bg-blue-950 {
+  background-color: var(--blue-950);
+}
+
+.border-blue-900 {
+  border-color: var(--blue-900);
+}
+
+.border-blue-800 {
+  border-color: var(--blue-800);
+}
+
+.border-cyan-800 {
+  border-color: var(--cyan-800);
+}
+
+.border-cyan-400 {
+  border-color: var(--cyan-400);
+}
+
+/* Keyframes for Animations */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4, 0 0 30px #06b6d4;
+  }
+  to {
+    text-shadow: 0 0 15px #06b6d4, 0 0 25px #06b6d4, 0 0 35px #06b6d4, 0 0 45px #06b6d4;
+  }
+}
+
+@keyframes circuit-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.circuit-node {
+  animation: var(--animation-circuit-pulse);
+}
+
+.circuit-node:nth-child(odd) {
+  animation-delay: 1s;
+}
+
+.circuit-node:nth-child(3n) {
+  animation-delay: 2s;
+}
+
+
+
